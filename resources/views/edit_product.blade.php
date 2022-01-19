@@ -67,7 +67,7 @@
                 <div class="col-12">
                   <img id="image" src="#" />
                   <label class="form-label">Images</label>
-                  <input class="form-control" type="file" name="product_image" accept="image/*"  required onchange="readURL(this);">
+                  <input class="form-control" type="file" name="product_image" accept="image/*"   onchange="readURL(this);">
                 </div>
 
                 <div class="col-12">

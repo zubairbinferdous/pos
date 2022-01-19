@@ -45,9 +45,13 @@ Route::get('/addcategory', 'HomeController@addCategory')->name('addCategory');
 Route::get('/delete-category/{id}', 'HomeController@deleteCategory');
 Route::get('/edit-category/{id}', 'HomeController@editCategory');
 Route::post('/update-category/{id}','HomeController@updateCategory');
-
+           
 //pos-part
 Route::get('/pos', 'HomeController@pos')->name('pos');
+//pos-cart
+Route::post('/add-cart','HomeController@cart');
+Route::post('/cart_update/{rowId}','HomeController@cartUpdate');
+Route::get('/cart_remove/{rowId}','HomeController@remove');
 
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use App\Employee;
+use Cart;
 
 class HomeController extends Controller
 {
@@ -34,18 +35,6 @@ class HomeController extends Controller
         Auth::logout();
         return Redirect()->route('login');
     }
-
-    //pos******************************************************************************
-
-    public function pos()
-    {
-        return view('pos');
-    }
-
-
-
-
-
 
 
     // all-product-part***************************************************************
@@ -342,7 +331,7 @@ class HomeController extends Controller
 
 
 
-    // Category-part
+    // Category-part *************************************************************
 
     public function allCategory()
     {   
@@ -439,6 +428,85 @@ class HomeController extends Controller
                  return Redirect()->back()->with($notification);
              } 
     }
+
+
+
+    
+    //pos******************************************************************************
+
+    public function pos()
+    {    
+        $products=DB::table('products')->get();
+        return view('pos' , compact('products'));
+    }
+
+    public function cart(Request $request)
+    {
+        $data=array();
+        $data['id']=$request->id;
+        $data['name']=$request->name;
+        $data['qty']=$request->qty;
+        $data['price']=$request->price;
+
+        $add=Cart::add($data);
+        if ($add) {
+                 $notification=array(
+                 'messege'=>'Successfully Added ',
+                 'alert-type'=>'success'
+                  );
+                return Redirect()->back()->with($notification);                      
+             }else{
+              $notification=array(
+                 'messege'=>'error ',
+                 'alert-type'=>'success'
+                  );
+                 return Redirect()->back()->with($notification);
+             } 
+
+    }
+
+    public function cartUpdate(Request $request, $rowId)
+    {
+        $qty=$request->qty;
+        $update=Cart::update($rowId, $qty);
+        if ($update) {
+                 $notification=array(
+                 'messege'=>'Successfully update ',
+                 'alert-type'=>'success'
+                  );
+                return Redirect()->back()->with($notification);                      
+             }else{
+              $notification=array(
+                 'messege'=>'error ',
+                 'alert-type'=>'success'
+                  );
+                 return Redirect()->back()->with($notification);
+             } 
+    }
+
+
+    public function remove($rowId)
+    {
+        $remove=Cart::remove($rowId);
+        if ($remove) {
+                 $notification=array(
+                 'messege'=>'Successfully remove ',
+                 'alert-type'=>'success'
+                  );
+                return Redirect()->back()->with($notification);                      
+             }else{
+              $notification=array(
+                 'messege'=>'remove ',
+                 'alert-type'=>'success'
+                  );
+                 return Redirect()->back()->with($notification);
+             } 
+    }
+
+
+
+
+
 
 
 
