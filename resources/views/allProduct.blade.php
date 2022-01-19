@@ -55,7 +55,7 @@
                  </td>
                  <td>{{ $row->buy_price }}</td>
                  <td>{{ $row->sell_price }}</td>
-                
+                 
                  <td>
                    <div class="table-actions d-flex align-items-center gap-3 fs-6">
                   

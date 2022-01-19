@@ -10,7 +10,7 @@
           <ol class="breadcrumb mb-0 p-0">
             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Add New Product</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit New Product</li>
           </ol>
         </nav>
       </div>
@@ -33,11 +33,11 @@
          <div class="col-lg-8 mx-auto">
           <div class="card">
             <div class="card-header py-3 bg-transparent"> 
-               <h5 class="mb-0">Add New Product</h5>
+               <h5 class="mb-0">Edit Product</h5>
               </div>
             <div class="card-body">
               <div class="border p-3 rounded">
-              <form class="row g-3" method="post" action=" {{ url('/update_product'.$edit->id) }} " enctype="multipart/form-data">
+              <form class="row g-3" method="post" action=" {{ url('/update-product/'.$edit->id) }} " enctype="multipart/form-data">
                 @csrf
                 <div class="col-12">
                   <label class="form-label">Product name</label>
@@ -90,7 +90,7 @@
 
 
                 <div class="col-12">
-                  <button class="btn btn-primary px-4">Submit Item</button>
+                  <button class="btn btn-primary px-4">update Item</button>
                 </div>
               </form>
               </div>

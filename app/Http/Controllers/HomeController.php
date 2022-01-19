@@ -140,34 +140,35 @@ class HomeController extends Controller
         return view('edit_product' , compact('edit'));
     }
 
-    public function updateP(Request $request, $id)
+    public function updateProduct(Request $request, $id)
     {
-        $data=array();
-        $data['name'] = $request->name;
-        $data['phone'] = $request->phone;
-        $data['salary'] = $request->salary;
-        $image = $request->photo;
+        $data['product_name'] = $request->product_name;
+        $data['cat_id'] = $request->cat_id;
+        $data['product_code'] = $request->product_code;
+        $data['buy_price'] = $request->buy_price;
+        $data['sell_price'] = $request->sell_price;
+        $image = $request->file('product_image');
 
         if ($image) {
             $image_name = str_random(20);
             $ext = strtolower($image->getClientOriginalExtension());
             $image_full_name = $image_name . '.' . $ext;
-            $upload_path = 'public/employee/';
+            $upload_path = 'public/products/';
             $image_url = $upload_path . $image_full_name;
             $success = $image->move($upload_path, $image_full_name);
             if ($success) {
-                $data['photo'] = $image_url;
-                $img = DB::table('employees')->where('id', $id)->first();
-                $image_path = $img->photo;
+                $data['product_image'] = $image_url;
+                $img = DB::table('products')->where('id', $id)->first();
+                $image_path = $img->product_image;
                 $done=unlink($image_path);
-                $post =DB::table('employees')->where('id', $id)->update($data);
-                if ($post) {
+                $product =DB::table('products')->where('id', $id)->update($data);
+                if ($product) {
                     $notification = [
-                        'messege' => 'Successfully Employee Update ',
+                        'messege' => 'Successfully products Update ',
                         'alert-type' => 'success',
                     ];
                     return Redirect()
-                        ->route('allEmployee')
+                        ->route('allProduct')
                         ->with($notification);
                 } else {
                     $notification = [
