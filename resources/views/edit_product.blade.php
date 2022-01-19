@@ -37,11 +37,11 @@
               </div>
             <div class="card-body">
               <div class="border p-3 rounded">
-              <form class="row g-3" method="post" action=" {{ url('/insert_product') }} " enctype="multipart/form-data">
+              <form class="row g-3" method="post" action=" {{ url('/update_product'.$edit->id) }} " enctype="multipart/form-data">
                 @csrf
                 <div class="col-12">
                   <label class="form-label">Product name</label>
-                  <input type="text" class="form-control" placeholder="Product title" name="product_name">
+                  <input type="text" class="form-control" value=" {{ $edit->product_name }}" name="product_name">
                 </div>
 
                 <div class="col-12 col-md-6">
@@ -60,7 +60,7 @@
 
                 <div class="col-12">
                   <label class="form-label">Product code</label>
-                  <input type="text" class="form-control" placeholder="Product title" name="product_code">
+                  <input type="text" class="form-control" value=" {{ $edit->product_code }}" name="product_code">
                 </div>
 
                                 
@@ -70,17 +70,21 @@
                   <input class="form-control" type="file" name="product_image" accept="image/*"  required onchange="readURL(this);">
                 </div>
 
+                <div class="col-12">
+                    <img id="image" src="{{ URL::to( $edit->product_image) }}" name="old_photo"  class="form-control" style="height: 90px; width:90px" />
+                </div>
+
 
 
                 <div class="col-12">
                   <label class="form-label"> Buying price </label>
-                  <input type="text" class="form-control" placeholder="Product title " name="buy_price">
+                  <input type="text" class="form-control" value=" {{ $edit->buy_price }} " name="buy_price">
                 </div>
 
 
                 <div class="col-12">
                   <label class="form-label"> selling price </label>
-                  <input type="text" class="form-control" placeholder="Product title" name="sell_price">
+                  <input type="text" class="form-control" value=" {{ $edit->sell_price }}" name="sell_price">
                 </div>
 
 

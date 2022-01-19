@@ -48,11 +48,10 @@
                 
                  <td>
                    <div class="table-actions d-flex align-items-center gap-3 fs-6">
-                     <a href="#" class="text-primary" data-bs-placement="bottom" title="Views"><i class="bi bi-eye-fill"></i></a>
 
-                     <a href="#" class="text-warning"  data-bs-placement="bottom" title="Edit"><i class="bi bi-pencil-fill"></i></a>
+                     <a href=" {{ URL::to('/edit-category/'.$row->id)}} " class="text-warning"  data-bs-placement="bottom" title="Edit"><i class="bi bi-pencil-fill"></i></a>
 
-                     <a href="#" id="delete" class="text-danger"  data-bs-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></a>
+                     <a href=" {{ URL::to('/delete-category/'.$row->id)}}" id="delete" class="text-danger"  data-bs-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></a>
                    </div>
                  </td>
                </tr>

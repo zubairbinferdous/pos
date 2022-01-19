@@ -18,19 +18,42 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/logout', 'HomeController@Logout')->name('logout');
+
+
 // all-product 
 Route::get('/allproduct', 'HomeController@allProduct')->name('allProduct');
+Route::post('/insert_product','HomeController@product');
 Route::get('/addproduct', 'HomeController@addProduct')->name('addProduct');
+Route::get('/delete-product/{id}', 'HomeController@deleteProduct');
+Route::get('/edit-product/{id}', 'HomeController@editProduct');
+Route::post('/update-product/{id}','HomeController@updateProduct');
+
 
 //all-employee
 Route::get('/allemployee', 'HomeController@allEmployee')->name('allEmployee');
 Route::post('/insert-employee','HomeController@store');
 Route::get('/addemployee', 'HomeController@addEmployee')->name('addEmployee');
+Route::get('/delete-employee/{id}', 'HomeController@deleteEmployee');
+Route::get('/edit-employee/{id}', 'HomeController@editEmployee');
+Route::post('/update-employee/{id}','HomeController@updateEmployee');
+
 
 //all-category
 Route::get('/allcategory', 'HomeController@allCategory')->name('allCategory');
 Route::post('/insert-category','HomeController@category');
 Route::get('/addcategory', 'HomeController@addCategory')->name('addCategory');
+Route::get('/delete-category/{id}', 'HomeController@deleteCategory');
+Route::get('/edit-category/{id}', 'HomeController@editCategory');
+Route::post('/update-category/{id}','HomeController@updateCategory');
+
+//pos-part
+Route::get('/pos', 'HomeController@pos')->name('pos');
+
+
+
+
+
+
 
 
 

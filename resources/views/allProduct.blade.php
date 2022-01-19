@@ -1,74 +1,79 @@
 @extends('layouts.app')
 
 @section('content')
-
 <main class="page-content">
-    <!--breadcrumb-->
-    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-      <div class="breadcrumb-title pe-3">Dominate </div>
-      <div class="ps-3">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0 p-0">
-            <li class="breadcrumb-item"><a href=""><i class="bx bx-home-alt"></i></a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Products List</li>
-          </ol>
-        </nav>
-      </div>
+  <!--breadcrumb-->
+  <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3">Tables</div>
+    <div class="ps-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0">
+          <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">All Product</li>
+        </ol>
+      </nav>
     </div>
-    <!--end breadcrumb-->
+    <div class="ms-auto">
+  
+    </div>
+  </div>
+  <!--end breadcrumb-->
 
-      <div class="card">
-        <div class="card-header py-3">
-          <div class="row align-items-center m-0">
+     <div class="card">
+       <div class="card-body">
+         <div class="d-flex align-items-center">
+            <h5 class="mb-0">All Product</h5>
+             <form class="ms-auto position-relative">
+               <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-search"></i></div>
+               <input class="form-control ps-5" type="text" placeholder="search">
+             </form>
          </div>
-        </div>
-        <div class="card-body">
-
-          <div class="table-responsive">
-            <table class="table align-middle table-striped">
-              <tbody>
-                <tr>
-                  <td>
-                  </td>
-                  <td class="productlist">
-                    <a class="d-flex align-items-center gap-2" href="#">
-                      <div class="product-box">
-                          <img src="https://via.placeholder.com/400X300" alt="">
+         <div class="table-responsive mt-3">
+           <table class="table align-middle">
+             <thead class="table-secondary">
+               <tr>
+                <th>product_code</th>
+                <th>product_name</th>
+                <th>buy_price</th>
+                <th>sell_price</th>
+                <th>action</th>
+               </tr>
+             </thead>
+             <tbody>
+               @foreach ($products as $row)
+                   
+               <tr>
+                <td> {{ $row->product_code }} </td>
+                 <td>
+                   <div class="d-flex align-items-center gap-3 cursor-pointer">
+                      <img src=" {{ $row->product_image }} " class="rounded-circle" width="44" height="44" alt="">
+                      <div class="">
+                        <p class="mb-0">{{ $row->product_name }}</p>
                       </div>
-                      <div>
-                          <h6 class="mb-0 product-title">Men White Polo T-shirt</h6>
-                      </div>
-                     </a>
-                  </td>
-                  <td><span>$18.00</span></td>
-                  <td><span class="badge rounded-pill alert-success">Active</span></td>
-                  <td><span>5-31-2020</span></td>
-                  <td>
-                    <div class="d-flex align-items-center gap-3 fs-6">
-                      <a href="javascript:;" class="text-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="View detail" aria-label="Views"><i class="bi bi-eye-fill"></i></a>
-                      <a href="javascript:;" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><i class="bi bi-pencil-fill"></i></a>
-                      <a href="javascript:;" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><i class="bi bi-trash-fill"></i></a>
-                    </div>
-                  </td>
-                </tr>
+                   </div>
+                 </td>
+                 <td>{{ $row->buy_price }}</td>
+                 <td>{{ $row->sell_price }}</td>
+                
+                 <td>
+                   <div class="table-actions d-flex align-items-center gap-3 fs-6">
+                  
+                     <a href=" {{ URL::to('edit-product/'.$row->id)}} " class="text-warning"  data-bs-placement="bottom" title="Edit"><i class="bi bi-pencil-fill"></i></a>
 
-              </tbody>
-            </table>
-          </div>
+                     <a href=" {{ URL::to('delete-product/'.$row->id)}} " id="delete" class="text-danger"  data-bs-placement="bottom" title="Delete"><i class="bi bi-trash-fill"></i></a>
+                   </div>
+                 </td>
+               </tr>
+               @endforeach
+             </tbody>
+           </table>
+         </div>
+       </div>
+     </div>
 
-    <nav class="float-end mt-4" aria-label="Page navigation">
-      <ul class="pagination">
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-      </ul>
-    </nav>
 
-</div>
-</div>
+
 </main>
 
 @endsection

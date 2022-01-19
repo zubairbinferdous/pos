@@ -10,7 +10,7 @@
           <ol class="breadcrumb mb-0 p-0">
             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Add New Product</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Employee </li>
           </ol>
         </nav>
       </div>
@@ -33,62 +33,46 @@
          <div class="col-lg-8 mx-auto">
           <div class="card">
             <div class="card-header py-3 bg-transparent"> 
-               <h5 class="mb-0">Add New Product</h5>
+               <h5 class="mb-0">Edit Employee</h5>
               </div>
             <div class="card-body">
               <div class="border p-3 rounded">
-              <form class="row g-3" method="post" action=" {{ url('/insert_product') }} " enctype="multipart/form-data">
+
+
+              <form class="row g-3" method="post" action=" {{ url('/update-employee/'.$edit->id) }} " enctype="multipart/form-data">
                 @csrf
                 <div class="col-12">
-                  <label class="form-label">Product name</label>
-                  <input type="text" class="form-control" placeholder="Product title" name="product_name">
+                  <label class="form-label">Employee name </label>
+                  <input type="text" name="name" class="form-control" value=" {{ $edit->name }} " required>
                 </div>
-
-                <div class="col-12 col-md-6">
-                  <label class="form-label">Category</label>
-                  @php
-                      $cat=DB::table('categorys')->get();
-                  @endphp
-                  <select class="form-select" name="cat_id">
-                    <option value=""> Setect </option>
-                    @foreach ($cat as $row)
-                    <option value=" {{ $row->id }} " > {{$row->name}} </option>
-                    @endforeach
-                  </select>
-                </div>
-
 
                 <div class="col-12">
-                  <label class="form-label">Product code</label>
-                  <input type="text" class="form-control" placeholder="Product title" name="product_code">
+                  <label class="form-label">Employee phone</label>
+                  <input type="text" class="form-control" value="{{ $edit->phone }}" name="phone" required>
                 </div>
 
-                                
+                <div class="col-12">
+                  <label class="form-label">Employee salary</label>
+                  <input type="text" class="form-control" value="{{ $edit->salary }}" name="salary" required>
+                </div>
+
                 <div class="col-12">
                   <img id="image" src="#" />
                   <label class="form-label">Images</label>
-                  <input class="form-control" type="file" name="product_image" accept="image/*"  required onchange="readURL(this);">
+                  <input class="form-control" type="file" name="photo" accept="image/*"   onchange="readURL(this);">
                 </div>
 
-
-
                 <div class="col-12">
-                  <label class="form-label"> Buying price </label>
-                  <input type="text" class="form-control" placeholder="Product title " name="buy_price">
+                    <img id="image" src="{{ URL::to( $edit->photo) }}" name="old_photo"  class="form-control" style="height: 90px; width:90px"  />
                 </div>
 
 
                 <div class="col-12">
-                  <label class="form-label"> selling price </label>
-                  <input type="text" class="form-control" placeholder="Product title" name="sell_price">
-                </div>
-
-
-
-                <div class="col-12">
-                  <button class="btn btn-primary px-4">Submit Item</button>
+                  <button class="btn btn-primary px-4">update Item</button>
                 </div>
               </form>
+
+
               </div>
              </div>
             </div>

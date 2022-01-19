@@ -235,6 +235,15 @@
 
 
                     <li>
+                        <a href="{{ Route('pos') }}">
+                            <div class="parent-icon"><i class="lni lni-calculator"></i>
+                            </div>
+                            <div class="menu-title">Pos Management</div>
+                        </a>
+                    </li>
+
+
+                    <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="lni lni-emoji-smile"></i>
                             </div>
