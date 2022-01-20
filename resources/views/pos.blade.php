@@ -108,11 +108,17 @@
                             </div>
 
 
+                        <form action=" {{url('/create-invoice')}} " method="post">
+                            @csrf
                             <div class="col-12">
                                 <div class="d-grid">
-                                    <button class="btn btn-primary"> ORDER PRODUCT </button>
+                                    <button class="btn btn-primary"> Product Confirm </button>
                                 </div>
                             </div>
+                        </form>
+
+
+
 
                     </div>
                 </div>

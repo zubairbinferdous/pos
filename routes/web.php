@@ -52,6 +52,8 @@ Route::get('/pos', 'HomeController@pos')->name('pos');
 Route::post('/add-cart','HomeController@cart');
 Route::post('/cart_update/{rowId}','HomeController@cartUpdate');
 Route::get('/cart_remove/{rowId}','HomeController@remove');
+//invoice
+Route::post('/create-invoice','HomeController@invoice');
 
 
 

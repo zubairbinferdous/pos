@@ -503,6 +503,15 @@ class HomeController extends Controller
              } 
     }
 
+    // pos invoice 
+
+    public function invoice(Request $request)
+    {
+
+        $contents=Cart::content();
+        return view('invoice' , compact('contents'));
+    }
+
 
 
 
