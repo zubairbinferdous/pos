@@ -54,6 +54,10 @@ Route::post('/cart_update/{rowId}','HomeController@cartUpdate');
 Route::get('/cart_remove/{rowId}','HomeController@remove');
 //invoice
 Route::post('/create-invoice','HomeController@invoice');
+Route::post('/final-invoice','HomeController@finalInvoice');
+//order
+Route::get('/pending-orders','HomeController@pending')->name('pending-orders');
+Route::get('/view-order/{id}','HomeController@viewOrder');
 
 
 

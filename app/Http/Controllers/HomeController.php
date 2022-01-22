@@ -513,12 +513,73 @@ class HomeController extends Controller
     }
 
 
+    public function finalInvoice(Request $request)
+    {
+        $data=array();
+        $data['payment_status']=$request->payment_status;
+        $data['pay']=$request->pay;
+        $data['due']=$request->due;
+        $data['payment_status']=$request->payment_status;
+        $data['Customar_name']=$request->Customar_name;
+        $data['Customar_phone']=$request->Customar_phone;
+        $data['Customar_email']=$request->Customar_email;
+        $data['order_status']=$request->order_status;
+        $data['total_products']=$request->total_products;
+        $data['sub_total']=$request->sub_total;
+
+        $order_id=DB::table('orders')->insertGetId($data);
+        $contents=Cart::content();
+        $odata=array();
+
+        foreach ($contents as $content) {
+            $odata['order_id']=$order_id;
+            $odata['product_id']=$content->id;
+            $odata['quantity']=$content->qty;
+            $odata['unitcost']=$content->price;
+            $odata['total']=$content->subtotal;
+
+            $ins=DB::table('orderdetails')->insert($odata);
+        }
+
+        if ($ins) {
+                 $notification=array(
+                 'messege'=>'Successfully Order Complete, thanks to connected with us, your order will be approved by admin', 
+                 'alert-type'=>'error'
+                  );
+                  Cart::destroy();
+                return Redirect()->route('pos')->with($notification);                      
+             }else{
+              $notification=array(
+                 'messege'=>'remove',
+                 'alert-type'=>'success'
+                  );
+                 return Redirect()->back()->with($notification);
+             } 
+
+    }
+
+//order-part
+
+    public function pending()
+    {
+       $pending=DB::table('orders')->where('order_status', 'pending')->get();
+        return view('pendingOrders' , compact('pending'));
+    }
 
 
+    // view order 
 
+    public function viewOrder($id)
+    {
+        $order=DB::table('orders')->where('orders.id' , $id)->first();
+        $orderDetails=DB::table('orderdetails')
+        ->join('products','orderdetails.product_id','products.product_code')
+        ->select('orderdetails.*', 'products.product_name','products.product_image' )
+        ->where('order_id', $id)->get();
+         return view('OrdersDetails' , compact('order' ,'orderDetails'));
 
-
-
+    }
 
 
 }
+

@@ -294,9 +294,9 @@
                             <div class="menu-title">Orders</div>
                         </a>
                         <ul>
-                            <li> <a href="widgets-static-widgets.html"><i class="bi bi-circle"></i>Panding Orders</a>
+                            <li> <a href=" {{ route('pending-orders')}} "><i class="bi bi-circle"></i>Pending Orders</a>
                             </li>
-                            <li> <a href="widgets-data-widgets.html"><i class="bi bi-circle"></i>success Orders</a>
+                            <li> <a href="widgets-data-widgets.html"><i class="bi bi-circle"></i>Success Orders</a>
                             </li>
                         </ul>
                     </li>
@@ -316,6 +316,20 @@
                             </li>
                         </ul>
                     </li>
+
+
+                    <li>
+                        <a href="javascript:;" class="has-arrow">
+                            <div class="parent-icon"><i class="lni lni-user"></i>
+                            </div>
+                            <div class="menu-title">Customar </div>
+                        </a>
+                        <ul>
+                            <li> <a href="widgets-static-widgets.html"><i class="bi bi-circle"></i>All Customar</a>
+                            </li>
+                        </ul>
+                    </li>
+
 
 
 
@@ -361,7 +375,7 @@
 
     <script>
         @if (Session::has('messege'))
-            var type="{{ Session::get('alert-type', 'info') }}"
+            var type="{{ Session::get('alert-type', 'info' , ) }}"
             switch(type){
             case 'info':
             toastr.info("{{ Session::get('messege') }}");
@@ -375,9 +389,12 @@
             case 'error':
             toastr.error("{{ Session::get('messege') }}");
             break;
+            
             }
         @endif
     </script>
+
+
     <script>
         $(document).on("click", "#delete", function(e) {
             e.preventDefault();
