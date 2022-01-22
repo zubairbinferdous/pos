@@ -201,9 +201,6 @@
                                     <!--end row-->
                                 </div>
                             </li>
-
-
-
                         </ul>
                     </div>
                 </nav>
@@ -319,13 +316,13 @@
 
 
                     <li>
-                        <a href="javascript:;" class="has-arrow">
+                        <a href="" class="has-arrow">
                             <div class="parent-icon"><i class="lni lni-user"></i>
                             </div>
                             <div class="menu-title">Customar </div>
                         </a>
                         <ul>
-                            <li> <a href="widgets-static-widgets.html"><i class="bi bi-circle"></i>All Customar</a>
+                            <li> <a href=" {{route('customar')}} "><i class="bi bi-circle"></i>All Customar</a>
                             </li>
                         </ul>
                     </li>

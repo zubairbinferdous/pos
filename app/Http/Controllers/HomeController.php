@@ -581,5 +581,27 @@ class HomeController extends Controller
     }
 
 
+    // pos done 
+
+    public function posDone($id)
+    {
+        $approve=DB::table('orders')->where('id',$id)->update(['order_status'=>'success']);
+        if ($approve) {
+                 $notification=array(
+                 'messege'=>'Successfully Order Approved By Admin', 
+                 'alert-type'=>'error'
+                  );
+                  Cart::destroy();
+                return Redirect()->route('pending-orders')->with($notification);                      
+             }else{
+              $notification=array(
+                 'messege'=>'remove',
+                 'alert-type'=>'success'
+                  );
+                 return Redirect()->back()->with($notification);
+             } 
+    }
+
+
 }
 

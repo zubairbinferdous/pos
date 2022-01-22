@@ -61,7 +61,7 @@
 
                      <div class="table-actions d-flex align-items-center gap-3 fs-6">
 
-                       <a href=" {{ URL::to('view-order/'.$row->id)}} " class="btn btn-danger  position-relative me-lg-3" type="button" title="Edit"> <i class="lni lni-consulting"></i></a>
+                       <a href=" {{ URL::to('view-order/'.$row->id)}} " class="btn btn-danger  position-relative me-lg-3" type="button" > <i class="lni lni-consulting"></i></a>
   
                      </div>
                    </td>

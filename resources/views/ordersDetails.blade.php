@@ -151,7 +151,7 @@
                     <hr>
                     <div class="button" style="margin-left:85%">
                         <button type="button" class="btn btn-outline-warning px-5" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Confirm Order</button>
+                            data-bs-target="#exampleModal"> <a href=" {{URL::to('/pos-done/'.$order->id)}} ">Confirm Order</a> </button>
                     </div>
                     <!-- end invoice-note -->
                 </div>
