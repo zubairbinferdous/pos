@@ -39,7 +39,7 @@
                </tr>
              </thead>
              <tbody>
-               @foreach ($Coustmar as $row)
+               @foreach ($customar as $row)
                    
                <tr>
                 <td> {{ $row->Customar_name }} </td>

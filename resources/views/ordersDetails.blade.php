@@ -149,10 +149,20 @@
                     <!--end row-->
 
                     <hr>
+
+                    @if ($order->order_status == 'success')
+                    @else
                     <div class="button" style="margin-left:85%">
                         <button type="button" class="btn btn-outline-warning px-5" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> <a href=" {{URL::to('/pos-done/'.$order->id)}} ">Confirm Order</a> </button>
+                            data-bs-target="#exampleModal"> <a href=" {{URL::to('/pos-done/'.$order->id)}}">Confirm Order</a> </button>
                     </div>
+
+                    @endif
+
+
+
+
+
                     <!-- end invoice-note -->
                 </div>
 

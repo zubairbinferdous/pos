@@ -59,6 +59,8 @@ Route::post('/final-invoice','HomeController@finalInvoice');
 Route::get('/pending-orders','HomeController@pending')->name('pending-orders');
 Route::get('/view-order/{id}','HomeController@viewOrder');
 Route::get('/pos-done/{id}','HomeController@posDone');
+Route::get('/success-orders','HomeController@success')->name('success-orders');
+
 
 // customar part
 

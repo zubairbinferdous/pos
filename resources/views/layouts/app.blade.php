@@ -67,14 +67,14 @@
                                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                                     data-bs-toggle="dropdown">
                                     <div class="user-setting d-flex align-items-center">
-                                        <img src="https://via.placeholder.com/110X110" class="user-img" alt="">
+                                        <img src="{{asset('public/backend/assets/images/user.png')}}" class="user-img" alt="">
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex align-items-center">
-                                                <img src="https://via.placeholder.com/110X110" alt="" class="rounded-circle"
+                                                <img src="{{asset('public/backend/assets/images/user.png')}}" alt="" class="rounded-circle"
                                                     width="54" height="54">
                                                 <div class="ms-3">
                                                     <h6 class="mb-0 dropdown-user-name">{{ Auth::user()->name }}</h6>
@@ -98,7 +98,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown dropdown-large">
+
+                            {{-- <li class="nav-item dropdown dropdown-large">
                                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                                     data-bs-toggle="dropdown">
                                     <div class="projects">
@@ -200,7 +201,8 @@
                                     </div>
                                     <!--end row-->
                                 </div>
-                            </li>
+                            </li> --}}
+
                         </ul>
                     </div>
                 </nav>
@@ -293,16 +295,31 @@
                         <ul>
                             <li> <a href=" {{ route('pending-orders')}} "><i class="bi bi-circle"></i>Pending Orders</a>
                             </li>
-                            <li> <a href="widgets-data-widgets.html"><i class="bi bi-circle"></i>Success Orders</a>
+                            <li> <a href=" {{ route('success-orders')}} "><i class="bi bi-circle"></i>Success Orders</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="javascript:;" class="has-arrow">
+                            <div class="parent-icon"><i class="lni lni-user"></i>
+                            </div>
+                            <div class="menu-title">Customar </div>
+                        </a>
+                        <ul>
+                            <li> <a href=" {{route('customar')}} "><i class="bi bi-circle"></i>All Customar</a>
                             </li>
                         </ul>
                     </li>
 
 
 
+
+
                     <li>
                         <a href="javascript:;" class="has-arrow">
-                            <div class="parent-icon"><i class="lni lni-user"></i>
+                            <div class="parent-icon"><i class="lni lni-users"></i>
                             </div>
                             <div class="menu-title">User Role</div>
                         </a>
@@ -314,18 +331,6 @@
                         </ul>
                     </li>
 
-
-                    <li>
-                        <a href="" class="has-arrow">
-                            <div class="parent-icon"><i class="lni lni-user"></i>
-                            </div>
-                            <div class="menu-title">Customar </div>
-                        </a>
-                        <ul>
-                            <li> <a href=" {{route('customar')}} "><i class="bi bi-circle"></i>All Customar</a>
-                            </li>
-                        </ul>
-                    </li>
 
 
 

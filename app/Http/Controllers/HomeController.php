@@ -576,7 +576,7 @@ class HomeController extends Controller
         ->join('products','orderdetails.product_id','products.product_code')
         ->select('orderdetails.*', 'products.product_name','products.product_image' )
         ->where('order_id', $id)->get();
-         return view('OrdersDetails' , compact('order' ,'orderDetails'));
+         return view('ordersDetails' , compact('order' ,'orderDetails'));
 
     }
 
@@ -600,6 +600,25 @@ class HomeController extends Controller
                   );
                  return Redirect()->back()->with($notification);
              } 
+    }
+
+
+    // success-order 
+
+    public function success()
+    {
+        $success=DB::table('orders')->where('order_status', 'success')->get();
+        return view('success' , compact('success'));
+    }
+
+
+
+    // all customar 
+
+    public function customar()
+    {
+        $customar=DB::table('orders')->get();
+        return view('allcustomar' , compact('customar'));
     }
 
 
