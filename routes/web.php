@@ -66,6 +66,12 @@ Route::get('/success-orders','HomeController@success')->name('success-orders');
 
 Route::get('/customar','HomeController@customar')->name('customar');
 
+// expances - part 
+
+Route::get('/addexpances','HomeController@addexpences')->name('addexpences');
+Route::post('/insert-expances','HomeController@expances');
+Route::get('/allexpances','HomeController@allexpences')->name('allexpences');
+
 
 
 

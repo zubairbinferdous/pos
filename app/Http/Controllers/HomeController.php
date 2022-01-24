@@ -36,17 +36,13 @@ class HomeController extends Controller
         return Redirect()->route('login');
     }
 
-
     // all-product-part***************************************************************
 
     public function allProduct()
-    {    
-        $products=DB::table('products')->get();
+    {
+        $products = DB::table('products')->get();
         return view('allProduct', compact('products'));
-
     }
-
-
 
     public function addProduct()
     {
@@ -55,7 +51,7 @@ class HomeController extends Controller
 
     public function product(Request $request)
     {
-        $data = array();
+        $data = [];
         $data['product_name'] = $request->product_name;
         $data['cat_id'] = $request->cat_id;
         $data['product_code'] = $request->product_code;
@@ -98,35 +94,36 @@ class HomeController extends Controller
         }
     }
 
-
     public function deleteProduct($id)
     {
-        $delete=DB::table('products')
-        ->where('id' , $id)
-        ->delete();
+        $delete = DB::table('products')
+            ->where('id', $id)
+            ->delete();
         if ($delete) {
-                    $notification = [
-                        'messege' => 'Successfully Employee delete ',
-                        'alert-type' => 'success',
-                    ];
-                    return Redirect()->route('allProduct')->with($notification);
-                } else {
-                    $notification = [
-                        'messege' => 'error ',
-                        'alert-type' => 'success',
-                    ];
-                    return Redirect()->back() ->with($notification);
-                }
+            $notification = [
+                'messege' => 'Successfully Employee delete ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->route('allProduct')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'error ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
-
 
     public function editProduct($id)
     {
-
-        $edit=DB::table('products')
-        ->where('id' , $id)
-        ->first();
-        return view('edit_product' , compact('edit'));
+        $edit = DB::table('products')
+            ->where('id', $id)
+            ->first();
+        return view('edit_product', compact('edit'));
     }
 
     public function updateProduct(Request $request, $id)
@@ -147,10 +144,14 @@ class HomeController extends Controller
             $success = $image->move($upload_path, $image_full_name);
             if ($success) {
                 $data['product_image'] = $image_url;
-                $img = DB::table('products')->where('id', $id)->first();
+                $img = DB::table('products')
+                    ->where('id', $id)
+                    ->first();
                 $image_path = $img->product_image;
-                $done=unlink($image_path);
-                $product =DB::table('products')->where('id', $id)->update($data);
+                $done = unlink($image_path);
+                $product = DB::table('products')
+                    ->where('id', $id)
+                    ->update($data);
                 if ($product) {
                     $notification = [
                         'messege' => 'Successfully products Update ',
@@ -175,12 +176,6 @@ class HomeController extends Controller
             return Redirect()->back();
         }
     }
-
-
-
-
-
-    
 
     // employee-part*********************************************************************
 
@@ -238,53 +233,53 @@ class HomeController extends Controller
         }
     }
 
-
     public function allEmployee()
     {
-        $employees=Employee::all();
+        $employees = Employee::all();
         return view('allemployee', compact('employees'));
     }
 
-    // delete-employee 
+    // delete-employee
 
     public function deleteEmployee($id)
     {
-        $delete=DB::table('employees')
-        ->where('id' , $id)
-        ->delete();
+        $delete = DB::table('employees')
+            ->where('id', $id)
+            ->delete();
         if ($delete) {
-                    $notification = [
-                        'messege' => 'Successfully Employee delete ',
-                        'alert-type' => 'success',
-                    ];
-                    return Redirect()->route('allEmployee')->with($notification);
-                } else {
-                    $notification = [
-                        'messege' => 'error ',
-                        'alert-type' => 'success',
-                    ];
-                    return Redirect()->back() ->with($notification);
-                }
+            $notification = [
+                'messege' => 'Successfully Employee delete ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->route('allEmployee')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'error ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
-
-    // edit-employee 
+    // edit-employee
 
     public function editEmployee($id)
     {
-
-        $edit=DB::table('employees')
-        ->where('id' , $id)
-        ->first();
-        return view('edit_employee' , compact('edit'));
+        $edit = DB::table('employees')
+            ->where('id', $id)
+            ->first();
+        return view('edit_employee', compact('edit'));
     }
 
-
-    // update-employee 
+    // update-employee
 
     public function updateEmployee(Request $request, $id)
     {
-        $data=array();
+        $data = [];
         $data['name'] = $request->name;
         $data['phone'] = $request->phone;
         $data['salary'] = $request->salary;
@@ -299,10 +294,14 @@ class HomeController extends Controller
             $success = $image->move($upload_path, $image_full_name);
             if ($success) {
                 $data['photo'] = $image_url;
-                $img = DB::table('employees')->where('id', $id)->first();
+                $img = DB::table('employees')
+                    ->where('id', $id)
+                    ->first();
                 $image_path = $img->photo;
-                $done=unlink($image_path);
-                $post =DB::table('employees')->where('id', $id)->update($data);
+                $done = unlink($image_path);
+                $post = DB::table('employees')
+                    ->where('id', $id)
+                    ->update($data);
                 if ($post) {
                     $notification = [
                         'messege' => 'Successfully Employee Update ',
@@ -328,299 +327,352 @@ class HomeController extends Controller
         }
     }
 
-
-
-
     // Category-part *************************************************************
 
     public function allCategory()
-    {   
-        $categorys=DB::table('categorys')->get();
-        return view('allcategory',compact('categorys'));
+    {
+        $categorys = DB::table('categorys')->get();
+        return view('allcategory', compact('categorys'));
     }
-
-
-
 
     public function addCategory()
     {
         return view('addcategory');
     }
 
-
     public function category(Request $request)
     {
-
-        $data = array();
+        $data = [];
         $data['name'] = $request->name;
-        $cat=DB::table('categorys')->insert($data);
+        $cat = DB::table('categorys')->insert($data);
 
         if ($cat) {
-                 $notification=array(
-                 'messege'=>'Successfully Category Inserted ',
-                 'alert-type'=>'success'
-                  );
-                return Redirect()->route('allCategory')->with($notification);                      
-             }else{
-              $notification=array(
-                 'messege'=>'error ',
-                 'alert-type'=>'success'
-                  );
-                 return Redirect()->back()->with($notification);
-             } 
-    
+            $notification = [
+                'messege' => 'Successfully Category Inserted ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->route('allCategory')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'error ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
-
-//delete category
+    //delete category
     public function deleteCategory($id)
     {
-        $delete=DB::table('categorys')
-        ->where('id' , $id)
-        ->delete();
+        $delete = DB::table('categorys')
+            ->where('id', $id)
+            ->delete();
         if ($delete) {
-                    $notification = [
-                        'messege' => 'Successfully categorys delete ',
-                        'alert-type' => 'success',
-                    ];
-                    return Redirect()->route('allCategory')->with($notification);
-                } else {
-                    $notification = [
-                        'messege' => 'error ',
-                        'alert-type' => 'success',
-                    ];
-                    return Redirect()->back() ->with($notification);
-                }
+            $notification = [
+                'messege' => 'Successfully categorys delete ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->route('allCategory')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'error ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
-
-
-    
-    // edit-category 
+    // edit-category
 
     public function editCategory($id)
     {
-
-        $edit=DB::table('categorys')
-        ->where('id' , $id)
-        ->first();
-        return view('edit_category' , compact('edit'));
+        $edit = DB::table('categorys')
+            ->where('id', $id)
+            ->first();
+        return view('edit_category', compact('edit'));
     }
-
 
     public function updateCategory(Request $request, $id)
     {
-        $data = array();
+        $data = [];
         $data['name'] = $request->name;
-        $cat=DB::table('categorys')->where('id', $id)->update($data);
+        $cat = DB::table('categorys')
+            ->where('id', $id)
+            ->update($data);
 
         if ($cat) {
-                 $notification=array(
-                 'messege'=>'Successfully Category Inserted ',
-                 'alert-type'=>'success'
-                  );
-                return Redirect()->route('allCategory')->with($notification);                      
-             }else{
-              $notification=array(
-                 'messege'=>'error ',
-                 'alert-type'=>'success'
-                  );
-                 return Redirect()->back()->with($notification);
-             } 
+            $notification = [
+                'messege' => 'Successfully Category Inserted ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->route('allCategory')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'error ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
-
-
-    
     //pos******************************************************************************
 
     public function pos()
-    {    
-        $products=DB::table('products')->get();
-        return view('pos' , compact('products'));
+    {
+        $products = DB::table('products')->get();
+        return view('pos', compact('products'));
     }
 
     public function cart(Request $request)
     {
-        $data=array();
-        $data['id']=$request->id;
-        $data['name']=$request->name;
-        $data['qty']=$request->qty;
-        $data['price']=$request->price;
+        $data = [];
+        $data['id'] = $request->id;
+        $data['name'] = $request->name;
+        $data['qty'] = $request->qty;
+        $data['price'] = $request->price;
 
-        $add=Cart::add($data);
+        $add = Cart::add($data);
         if ($add) {
-                 $notification=array(
-                 'messege'=>'Successfully Added ',
-                 'alert-type'=>'success'
-                  );
-                return Redirect()->back()->with($notification);                      
-             }else{
-              $notification=array(
-                 'messege'=>'error ',
-                 'alert-type'=>'success'
-                  );
-                 return Redirect()->back()->with($notification);
-             } 
-
+            $notification = [
+                'messege' => 'Successfully Added ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'error ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
     public function cartUpdate(Request $request, $rowId)
     {
-        $qty=$request->qty;
-        $update=Cart::update($rowId, $qty);
+        $qty = $request->qty;
+        $update = Cart::update($rowId, $qty);
         if ($update) {
-                 $notification=array(
-                 'messege'=>'Successfully update ',
-                 'alert-type'=>'success'
-                  );
-                return Redirect()->back()->with($notification);                      
-             }else{
-              $notification=array(
-                 'messege'=>'error ',
-                 'alert-type'=>'success'
-                  );
-                 return Redirect()->back()->with($notification);
-             } 
+            $notification = [
+                'messege' => 'Successfully update ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'error ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
-
 
     public function remove($rowId)
     {
-        $remove=Cart::remove($rowId);
+        $remove = Cart::remove($rowId);
         if ($remove) {
-                 $notification=array(
-                 'messege'=>'Successfully remove ',
-                 'alert-type'=>'success'
-                  );
-                return Redirect()->back()->with($notification);                      
-             }else{
-              $notification=array(
-                 'messege'=>'remove ',
-                 'alert-type'=>'success'
-                  );
-                 return Redirect()->back()->with($notification);
-             } 
+            $notification = [
+                'messege' => 'Successfully remove ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'remove ',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
-    // pos invoice 
+    // pos invoice
 
     public function invoice(Request $request)
     {
-
-        $contents=Cart::content();
-        return view('invoice' , compact('contents'));
+        $contents = Cart::content();
+        return view('invoice', compact('contents'));
     }
-
 
     public function finalInvoice(Request $request)
     {
-        $data=array();
-        $data['payment_status']=$request->payment_status;
-        $data['pay']=$request->pay;
-        $data['due']=$request->due;
-        $data['payment_status']=$request->payment_status;
-        $data['Customar_name']=$request->Customar_name;
-        $data['Customar_phone']=$request->Customar_phone;
-        $data['Customar_email']=$request->Customar_email;
-        $data['order_status']=$request->order_status;
-        $data['total_products']=$request->total_products;
-        $data['sub_total']=$request->sub_total;
+        $data = [];
+        $data['payment_status'] = $request->payment_status;
+        $data['pay'] = $request->pay;
+        $data['due'] = $request->due;
+        $data['payment_status'] = $request->payment_status;
+        $data['Customar_name'] = $request->Customar_name;
+        $data['Customar_phone'] = $request->Customar_phone;
+        $data['Customar_email'] = $request->Customar_email;
+        $data['order_status'] = $request->order_status;
+        $data['total_products'] = $request->total_products;
+        $data['sub_total'] = $request->sub_total;
 
-        $order_id=DB::table('orders')->insertGetId($data);
-        $contents=Cart::content();
-        $odata=array();
+        $order_id = DB::table('orders')->insertGetId($data);
+        $contents = Cart::content();
+        $odata = [];
 
         foreach ($contents as $content) {
-            $odata['order_id']=$order_id;
-            $odata['product_id']=$content->id;
-            $odata['quantity']=$content->qty;
-            $odata['unitcost']=$content->price;
-            $odata['total']=$content->subtotal;
+            $odata['order_id'] = $order_id;
+            $odata['product_id'] = $content->id;
+            $odata['quantity'] = $content->qty;
+            $odata['unitcost'] = $content->price;
+            $odata['total'] = $content->subtotal;
 
-            $ins=DB::table('orderdetails')->insert($odata);
+            $ins = DB::table('orderdetails')->insert($odata);
         }
 
         if ($ins) {
-                 $notification=array(
-                 'messege'=>'Successfully Order Complete, thanks to connected with us, your order will be approved by admin', 
-                 'alert-type'=>'error'
-                  );
-                  Cart::destroy();
-                return Redirect()->route('pos')->with($notification);                      
-             }else{
-              $notification=array(
-                 'messege'=>'remove',
-                 'alert-type'=>'success'
-                  );
-                 return Redirect()->back()->with($notification);
-             } 
-
+            $notification = [
+                'messege' => 'Successfully Order Complete, thanks to connected with us, your order will be approved by admin',
+                'alert-type' => 'error',
+            ];
+            Cart::destroy();
+            return Redirect()
+                ->route('pos')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'remove',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
-//order-part
+    //order-part
 
     public function pending()
     {
-       $pending=DB::table('orders')->where('order_status', 'pending')->get();
-        return view('pendingOrders' , compact('pending'));
+        $pending = DB::table('orders')
+            ->where('order_status', 'pending')
+            ->get();
+        return view('pendingOrders', compact('pending'));
     }
 
-
-    // view order 
+    // view order
 
     public function viewOrder($id)
     {
-        $order=DB::table('orders')->where('orders.id' , $id)->first();
-        $orderDetails=DB::table('orderdetails')
-        ->join('products','orderdetails.product_id','products.product_code')
-        ->select('orderdetails.*', 'products.product_name','products.product_image' )
-        ->where('order_id', $id)->get();
-         return view('ordersDetails' , compact('order' ,'orderDetails'));
-
+        $order = DB::table('orders')
+            ->where('orders.id', $id)
+            ->first();
+        $orderDetails = DB::table('orderdetails')
+            ->join('products', 'orderdetails.product_id', 'products.product_code')
+            ->select('orderdetails.*', 'products.product_name', 'products.product_image')
+            ->where('order_id', $id)
+            ->get();
+        return view('ordersDetails', compact('order', 'orderDetails'));
     }
 
-
-    // pos done 
+    // pos done
 
     public function posDone($id)
     {
-        $approve=DB::table('orders')->where('id',$id)->update(['order_status'=>'success']);
+        $approve = DB::table('orders')
+            ->where('id', $id)
+            ->update(['order_status' => 'success']);
         if ($approve) {
-                 $notification=array(
-                 'messege'=>'Successfully Order Approved By Admin', 
-                 'alert-type'=>'error'
-                  );
-                  Cart::destroy();
-                return Redirect()->route('pending-orders')->with($notification);                      
-             }else{
-              $notification=array(
-                 'messege'=>'remove',
-                 'alert-type'=>'success'
-                  );
-                 return Redirect()->back()->with($notification);
-             } 
+            $notification = [
+                'messege' => 'Successfully Order Approved By Admin',
+                'alert-type' => 'error',
+            ];
+            Cart::destroy();
+            return Redirect()
+                ->route('pending-orders')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'remove',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
     }
 
-
-    // success-order 
+    // success-order
 
     public function success()
     {
-        $success=DB::table('orders')->where('order_status', 'success')->get();
-        return view('success' , compact('success'));
+        $success = DB::table('orders')
+            ->where('order_status', 'success')
+            ->get();
+        return view('success', compact('success'));
     }
 
-
-
-    // all customar 
+    // all customar
 
     public function customar()
     {
-        $customar=DB::table('orders')->get();
-        return view('allcustomar' , compact('customar'));
+        $customar = DB::table('orders')->get();
+        return view('allcustomar', compact('customar'));
     }
 
 
-}
+    public function addexpences()
+    {
+        return view('addexpances'); 
+    
+    }
 
+
+    public function expances(Request $request)
+    {
+        $data = [];
+        $data['about'] = $request->about;
+        $data['amount'] = $request->amount;
+        $expances = DB::table('expances')->insert($data);
+        if ($expances) {
+            $notification = [
+                'messege' => 'Successfully Added',
+                'alert-type' => 'error',
+            ];
+            return Redirect()
+                ->route('allexpences')
+                ->with($notification);
+        } else {
+            $notification = [
+                'messege' => 'remove',
+                'alert-type' => 'success',
+            ];
+            return Redirect()
+                ->back()
+                ->with($notification);
+        }
+    }
+
+    public function allexpences()
+    {
+        $amount = DB::table('expances')->get();
+        return view('allexpances', compact('amount'));
+    }
+
+
+
+}

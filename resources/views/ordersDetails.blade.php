@@ -160,9 +160,6 @@
                     @endif
 
 
-
-
-
                     <!-- end invoice-note -->
                 </div>
 

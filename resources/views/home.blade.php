@@ -5,6 +5,7 @@
     $order=DB::table('orders')->sum('total_products');
     $order=DB::table('orders')->sum('total_products');
     $amout_pay=DB::table('orders')->sum('pay');
+    $amount=DB::table('expances')->sum('amount');
     $product=DB::table('products')->get();
     $categorys=DB::table('categorys')->get();
     $success=DB::table('orders')->where('order_status', 'success')->get();
@@ -144,6 +145,24 @@
                 <div class="w-50 p-3 bg-light-orange">
                   <p>Total Users</p>
                   <h4 class="text-orange">{{ count($users) }} </h4>
+                </div>
+                <div class="w-50 bg-orange p-3">
+                   <p class="mb-3 text-white"> </p>
+                   <div id="chart4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+
+
+         <div class="col">
+          <div class="card overflow-hidden radius-10">
+              <div class="card-body p-2">
+               <div class="d-flex align-items-stretch justify-content-between radius-10 overflow-hidden">
+                <div class="w-50 p-3 bg-light-orange">
+                  <p> Expances</p>
+                  <h4 class="text-orange">{{ $amount }} </h4>
                 </div>
                 <div class="w-50 bg-orange p-3">
                    <p class="mb-3 text-white"> </p>
