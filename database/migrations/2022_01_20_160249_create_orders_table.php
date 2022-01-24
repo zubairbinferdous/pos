@@ -22,9 +22,14 @@ class CreateOrdersTable extends Migration
             $table->string('payment_status');
             $table->string('pay');
             $table->string('due');
+            $table->string('size');
             $table->string('Customar_name');
             $table->string('Customar_email');
             $table->string('Customar_phone');
+            $table->string('month')->nullable();
+            $table->string('date')->nullable();
+            $table->string('year')->nullable();
+
             $table->timestamps();
         });
     }

@@ -70,7 +70,10 @@
                   <input class="form-control" type="file" name="product_image" accept="image/*"  required onchange="readURL(this);">
                 </div>
 
-
+                <div class="col-12">
+                  <label class="form-label"> unit </label>
+                  <input type="number" class="form-control" placeholder="Product unit " name="unit">
+                </div>
 
                 <div class="col-12">
                   <label class="form-label"> Buying price </label>

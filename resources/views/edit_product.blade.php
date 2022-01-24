@@ -45,11 +45,11 @@
                 </div>
 
                 <div class="col-12 col-md-6">
-                  <label class="form-label">Category</label>
+                  <label class="form-label">Category <span style="color: brown">*******</span></label>
                   @php
                       $cat=DB::table('categorys')->get();
                   @endphp
-                  <select class="form-select" name="cat_id">
+                  <select class="form-select" name="cat_id" required>
                     <option value=""> Setect </option>
                     @foreach ($cat as $row)
                     <option value=" {{ $row->id }} " > {{$row->name}} </option>

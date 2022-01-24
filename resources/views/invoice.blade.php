@@ -181,7 +181,7 @@
                                             <form class="row g-3" method="POST" action=" {{url('/final-invoice')}} ">
                                                 @csrf
 
-                                                <div class="col-4">
+                                                <div class="col-6">
                                                     <label class="form-label">Payment</label>
                                                     <select class="form-select mb-3" aria-label="Default select example" name="payment_status">
                                                         <option value="Handcash">Handcash</option>
@@ -189,11 +189,22 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="col-4">
+                                                {{-- <div class="col-6">
+                                                    <label class="form-label">Size</label>
+                                                    <select class="form-select mb-3" aria-label="Default select example" name="size">
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                        <option value="Xl">Xl</option>
+                                                        <option value="XXL">XXL</option>
+                                                    </select>
+                                                </div> --}}
+
+                                                <div class="col-6">
                                                     <label class="form-label"> Amount to pay </label>
                                                     <input type="text" class="form-control" name="pay">
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-6">
                                                     <label class="form-label">Amount to due </label>
                                                     <input type="text" class="form-control" name="due">
                                                 </div>

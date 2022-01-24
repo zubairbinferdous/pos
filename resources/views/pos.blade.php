@@ -48,6 +48,7 @@
                                                 <th>Sell Price</th>
                                                 <th>total Price</th>
                                                 <th>Action</th>
+                                                {{-- <th>size</th> --}}
                                             </tr>
                                         </thead>
 
@@ -68,7 +69,6 @@
                                                             <button type="submit" class="btn btn-sm"style="background-color: green"  > <i class="lni lni-target" style="color:black"></i> </button>
                                                          </form>
                                                     </td>
-
                                                     <td>{{ $prod->price}}</td>
                                                     <td>{{ $prod->price*$prod->qty }}</td>
 
@@ -77,6 +77,17 @@
                                                             <a href=" {{URL::to('/cart_remove/'.$prod->rowId)}} " class="text-danger" data-bs-placement="bottom"><i class="bi bi-trash-fill"></i></a>
                                                         </div>
                                                     </td>
+
+
+                                                    {{-- <td>
+                                                        <select style="width: 50px">
+                                                            <option value="1">s</option>
+                                                            <option value="2">l</option>
+                                                            <option value="2">xl</option>
+                                                        </select>
+                                                    </td> --}}
+
+
                                                 </tr>
 
                                             @endforeach
@@ -154,14 +165,36 @@
                             </div>
                         </div>
                     </div>
+
+
+                        <!--breadcrumb-->
+                        {{-- <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                            <div class="breadcrumb-title pe-3">Tables</div>
+                            <div class="ps-3">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0 p-0">
+                                        <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Data Table</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                    
+                        </div> --}}
+                        <!--end breadcrumb-->
+
+
+                    
+                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table align-middle">
-                                <thead class="table-light">
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Customer name</th>
                                         <th>sell Price</th>
+                                        <th>unit</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -188,6 +221,7 @@
                                                     </div>
                                                 </td>
                                                 <td>{{ $row->sell_price }}</td>
+                                                <td>{{ $row->unit }}</td>
 
                                                 <td>
                                                     <button type="submit" class="btn btn-info btn-sm"><i
@@ -200,19 +234,21 @@
                                     @endforeach
 
 
+
                                 </tbody>
+                                {{-- <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Customer name</th>
+                                        <th>sell Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot> --}}
                             </table>
                         </div>
-                        <nav class="float-end" aria-label="Page navigation">
-                            {{-- <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                            </ul> --}}
-                        </nav>
                     </div>
+                </div>
+                    
                 </div>
             </div>
 
@@ -224,4 +260,14 @@
         <!--end row-->
 
     </main>
+
+
 @endsection
+
+
+
+                                
+
+
+                                
+                                

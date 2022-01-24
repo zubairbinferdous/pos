@@ -16,10 +16,21 @@
     <link href="{{ asset('public/backend/assets/css/bootstrap-extended.css') }}" rel="stylesheet" />
     <link href="{{ asset('public/backend/assets/css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('public/backend/assets/css/icons.css') }}" rel="stylesheet">
+    <link href="{{asset('public/backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet')}}" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     {{-- toster --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    <link href="{{asset('public/backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css" rel="stylesheet')}}" />
+
+
+    <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <link href="{{asset('public/backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap-extended.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/icons.css" rel="stylesheet">
 
 
     <!-- loader-->
@@ -224,6 +235,8 @@
                 <!--navigation-->
                 <ul class="metismenu" id="menu">
 
+                    @if(Auth::user()->category == 1)
+
                     <li>
                         <a href="{{ Route('home') }}">
                             <div class="parent-icon"><i class="bi bi-house-fill"></i>
@@ -231,6 +244,9 @@
                             <div class="menu-title">Dashboard</div>
                         </a>
                     </li>
+
+                    @else
+                    @endif
 
 
                     <li>
@@ -241,6 +257,8 @@
                         </a>
                     </li>
 
+
+                    @if(Auth::user()->category == 1)
 
                     <li>
                         <a href="javascript:;" class="has-arrow">
@@ -256,6 +274,13 @@
                         </ul>
                     </li>
 
+                    @else
+                    @endif
+
+
+
+                    @if(Auth::user()->category == 1)
+
                     <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="fadeIn animated bx bx-shape-polygon"></i>
@@ -270,6 +295,11 @@
                         </ul>
                     </li>
 
+                    @else
+                    @endif
+
+
+     
 
                     <li>
                         <a href="javascript:;" class="has-arrow">
@@ -286,6 +316,8 @@
                     </li>
 
 
+
+                    @if(Auth::user()->category == 1)
                     <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="lni lni-first-aid"></i>
@@ -300,7 +332,12 @@
                         </ul>
                     </li>
 
+                    @else
+                    @endif
 
+
+
+                    @if(Auth::user()->category == 1)
                     <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="lni lni-user"></i>
@@ -313,6 +350,11 @@
                         </ul>
                     </li>
 
+                    @else
+                    @endif
+
+
+                    @if(Auth::user()->category == 1)
 
                     <li>
                         <a href="javascript:;" class="has-arrow">
@@ -332,24 +374,28 @@
                         </ul>
                     </li>
 
+                    
+                    @else
+                    @endif
 
 
 
 
 
-                    <li>
+
+                    {{-- <li>
                         <a href="javascript:;" class="has-arrow">
                             <div class="parent-icon"><i class="lni lni-users"></i>
                             </div>
                             <div class="menu-title">User Role</div>
                         </a>
                         <ul>
-                            <li> <a href="widgets-static-widgets.html"><i class="bi bi-circle"></i>All User</a>
+                            <li> <a href=" {{route('adduser')}} "><i class="bi bi-circle"></i>Add User</a>
                             </li>
-                            <li> <a href="widgets-data-widgets.html"><i class="bi bi-circle"></i>Add User</a>
+                            <li> <a href="widgets-data-widgets.html"><i class="bi bi-circle"></i>All User</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
 
 
@@ -384,6 +430,9 @@
     <script src="{{ asset('public/backend/assets/plugins/chartjs/js/Chart.min.js') }}"></script>
     <script src="{{ asset('public/backend/assets/plugins/chartjs/js/Chart.extension.js') }}"></script>
     <script src="{{ asset('public/backend/assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+    <script src="{{asset('public/backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('public/backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('public/backend/assets/js/table-datatable.js')}}"></script>
     <!--app-->
     <script src="{{ asset('public/backend/assets/js/app.js') }}"></script>
     <script src="{{ asset('public/backend/assets/js/index2.js') }}"></script>

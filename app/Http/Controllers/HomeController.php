@@ -30,6 +30,12 @@ class HomeController extends Controller
         return view('home');
     }
 
+
+    public function welcome()
+    {
+        return view('welcome');
+    }
+
     public function Logout()
     {
         Auth::logout();
@@ -55,6 +61,7 @@ class HomeController extends Controller
         $data['product_name'] = $request->product_name;
         $data['cat_id'] = $request->cat_id;
         $data['product_code'] = $request->product_code;
+        $data['unit'] = $request->unit;
         $data['buy_price'] = $request->buy_price;
         $data['sell_price'] = $request->sell_price;
         $image = $request->file('product_image');
@@ -131,6 +138,7 @@ class HomeController extends Controller
         $data['product_name'] = $request->product_name;
         $data['cat_id'] = $request->cat_id;
         $data['product_code'] = $request->product_code;
+        $data['unit'] = $request->unit;
         $data['buy_price'] = $request->buy_price;
         $data['sell_price'] = $request->sell_price;
         $image = $request->file('product_image');
@@ -520,6 +528,7 @@ class HomeController extends Controller
     {
         $data = [];
         $data['payment_status'] = $request->payment_status;
+        $data['size'] = $request->size;
         $data['pay'] = $request->pay;
         $data['due'] = $request->due;
         $data['payment_status'] = $request->payment_status;
@@ -671,6 +680,15 @@ class HomeController extends Controller
     {
         $amount = DB::table('expances')->get();
         return view('allexpances', compact('amount'));
+    }
+
+
+    // add user 
+
+    public function adduser()
+    {
+        $user=DB::table('admin')->where('type', 2)->get();
+         return view('adduser', compact('user'));
     }
 
 

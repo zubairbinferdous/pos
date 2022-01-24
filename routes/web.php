@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/welcome', 'HomeController@welcome')->name('welcome');
 Route::get('/user/logout', 'HomeController@Logout')->name('logout');
 
 
@@ -71,6 +72,10 @@ Route::get('/customar','HomeController@customar')->name('customar');
 Route::get('/addexpances','HomeController@addexpences')->name('addexpences');
 Route::post('/insert-expances','HomeController@expances');
 Route::get('/allexpances','HomeController@allexpences')->name('allexpences');
+
+// user role
+
+Route::get('/userrole', 'HomeController@adduser')->name('adduser');
 
 
 
