@@ -198,18 +198,22 @@
                                                     <input type="text" class="form-control" name="due">
                                                 </div>
 
+                                                
+
                                                 <div class="col-12">
                                                     <label class="form-label">customer Name</label>
-                                                    <input type="text" class="form-control" name="Customar_name">
+                                                    <input type="text" class="form-control" name="Customar_name" required>
                                                 </div>
                                                 <div class="col-12">
                                                     <label class="form-label">customar Phone</label>
-                                                    <input type="number" class="form-control" name="Customar_phone">
+                                                    <input type="number" class="form-control" name="Customar_phone" required>
                                                 </div>
                                                 <div class="col-12">
                                                     <label class="form-label">coustmar Email</label>
-                                                    <input type="email" class="form-control" name="Customar_email">
+                                                    <input type="email" class="form-control" name="Customar_email" required>
                                                 </div>
+
+
 
                                                 <input type="hidden" name="order_status" value="pending">
                                                 <input type="hidden" name="total_products" value=" {{ Cart::count() }} ">
